@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ProyectoFinal" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#FF9860</item>
+        <item name="colorPrimaryDark">#FF5900</item>
+        <item name="colorAccent">#9E9E9E</item>
+        <item name="colorButtonNormal">#BDBDBD</item>
+    </style>
+
+    <style name="Theme.ProyectoFinal" parent="Base.Theme.ProyectoFinal" />
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/naranja</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.ProyectoFinal</item>
+    </style>
+</resources>

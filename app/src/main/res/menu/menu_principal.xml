@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/inicio"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/anadir_vivienda"
+        android:title="Añadir Vivienda" />
+    <item
+        android:id="@+id/actualizar_vivienda"
+        android:title="Actualizar Vivienda" />
+    <item
+        android:id="@+id/eliminar_vivienda"
+        android:title="Eliminar Vivienda" />
+
+    <item
+        android:id="@+id/cerrar_sesion"
+        android:title="Cerrar Sesión" />
+
+</menu>
