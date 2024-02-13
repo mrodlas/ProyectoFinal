@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    android:scaleType="centerCrop"
-    app:cardElevation="8dp"
-    android:background="#FF1111"
-    app:cardCornerRadius="6dp">
+    android:layout_marginVertical="16dp"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="#FFFFFF"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="171dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/fotoVivienda"
@@ -27,38 +28,34 @@
             android:id="@+id/tvNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="152dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="152dp"
+            android:layout_marginTop="41dp"
             android:text="Nombre"
             android:textAlignment="center"
             android:textColor="@color/black"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fotoVivienda" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="152dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="152dp"
             android:text="Descripcion"
             android:textAlignment="center"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNombre" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
         <TextView
             android:id="@+id/tvPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="152dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="152dp"
             android:text="Precio"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNombre" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescripcion" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

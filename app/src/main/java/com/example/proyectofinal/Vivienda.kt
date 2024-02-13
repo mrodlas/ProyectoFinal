@@ -1,3 +1,11 @@
 package com.example.proyectofinal
 
-data class Vivienda (val nombre:String ="", val descripcion:String="", val precio:String="")
+// Clase de datos para representar una vivienda
+data class Vivienda(
+    // Propiedad para el nombre de la vivienda
+    val nombre: String = "",
+    // Propiedad para la descripción de la vivienda
+    val descripcion: String = "",
+    // Propiedad para el precio de la vivienda
+    val precio: String = ""
+)

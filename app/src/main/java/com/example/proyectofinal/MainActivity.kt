@@ -7,53 +7,56 @@ import android.widget.Toast
 import com.example.proyectofinal.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
+// Actividad principal donde los usuarios pueden iniciar sesión o registrarse
 class MainActivity : ActivityConMenus() {
     lateinit var binding: ActivityMainBinding
 
+    // Método llamado cuando se crea la actividad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inflar el layout de la actividad usando ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configurar OnClickListener para el botón de iniciar sesión
         binding.btnAcceder.setOnClickListener {
             login()
         }
 
+        // Configurar OnClickListener para el botón de registrarse
         binding.btnRegistrarse.setOnClickListener {
             registro()
         }
-
     }
 
-    private fun login(){
-        //Comprobamos que los campos de correo y password no estén vacios:
-        if (binding.etUsuario.text.isNotEmpty() && binding.etContrasenia.text.isNotEmpty()){
-            //Iniciamos sesión con el método signIn y enviamos a Firebase el correo y la contraseña
+    // Método para iniciar sesión
+    private fun login() {
+        // Comprobar que los campos de correo y contraseña no estén vacíos
+        if (binding.etUsuario.text.isNotEmpty() && binding.etContrasenia.text.isNotEmpty()) {
+            // Iniciar sesión con el método signInWithEmailAndPassword de FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(
                 binding.etUsuario.text.toString(),
                 binding.etContrasenia.text.toString()
             )
-
-                .addOnCompleteListener{
-                    //Si la autenticación tuvo éxito:
-                    if(it.isSuccessful){
-                        //Accedemos a la pantalla bienvenidaActivity, para dar la bienvenida al usuario.
+                .addOnCompleteListener { task ->
+                    // Verificar si la autenticación tuvo éxito
+                    if (task.isSuccessful) {
+                        // Si la autenticación fue exitosa, iniciar la actividad ListadoActivity
                         val intent = Intent(this, ListadoActivity::class.java)
                         startActivity(intent)
-
-                    }
-                    else{
-                        //Sino avisamos al usuario que ocurrio un problema
-                        Toast.makeText(this, "Correo o password incorrecto", Toast.LENGTH_LONG).show()
+                    } else {
+                        // Si la autenticación falló, mostrar un mensaje de error al usuario
+                        Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_LONG).show()
                     }
                 }
-        }
-        else{
-            Toast.makeText(this, "Algún campo está vacio", Toast.LENGTH_LONG).show()
+        } else {
+            // Si algún campo está vacío, mostrar un mensaje al usuario
+            Toast.makeText(this, "Alguno de los campos está vacío", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun registro(){
+    // Método para iniciar la actividad de registro
+    private fun registro() {
         startActivity(Intent(this, RegistroActivity::class.java))
     }
 }
