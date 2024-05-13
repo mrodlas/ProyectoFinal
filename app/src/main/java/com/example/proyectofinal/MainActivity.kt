@@ -8,7 +8,7 @@ import com.example.proyectofinal.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
 // Actividad principal donde los usuarios pueden iniciar sesión o registrarse
-class MainActivity : ActivityConMenus() {
+class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     // Método llamado cuando se crea la actividad
@@ -27,6 +27,10 @@ class MainActivity : ActivityConMenus() {
         binding.btnRegistrarse.setOnClickListener {
             registro()
         }
+
+        binding.btnOlvidarContrasenia.setOnClickListener {
+            startActivity(Intent(this, OlvidarContrasenia::class.java))
+        }
     }
 
     // Método para iniciar sesión
@@ -43,7 +47,9 @@ class MainActivity : ActivityConMenus() {
                     if (task.isSuccessful) {
                         // Si la autenticación fue exitosa, iniciar la actividad ListadoActivity
                         val intent = Intent(this, ListadoActivity::class.java)
-                        startActivity(intent)
+                        // Mostrar un mensaje cuando haya iniciado sesión correctamente
+                        Toast.makeText(this, "Ha iniciado sesión correctamente", Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this, ListadoActivity::class.java))
                     } else {
                         // Si la autenticación falló, mostrar un mensaje de error al usuario
                         Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_LONG).show()
@@ -54,7 +60,6 @@ class MainActivity : ActivityConMenus() {
             Toast.makeText(this, "Alguno de los campos está vacío", Toast.LENGTH_LONG).show()
         }
     }
-
     // Método para iniciar la actividad de registro
     private fun registro() {
         startActivity(Intent(this, RegistroActivity::class.java))

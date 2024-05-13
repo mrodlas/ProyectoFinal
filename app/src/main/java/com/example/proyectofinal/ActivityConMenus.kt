@@ -19,11 +19,11 @@ open class ActivityConMenus : AppCompatActivity() {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_principal, menu)
 
-        // Desactivar la opción de la actividad en la que ya estamos
+        /*// Desactivar la opción de la actividad en la que ya estamos
         for (i in 0 until menu.size()) {
             if (i == activityActual) menu.getItem(i).isEnabled = false
             else menu.getItem(i).isEnabled = true
-        }
+        } */
 
         return true
     }
@@ -32,10 +32,19 @@ open class ActivityConMenus : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.inicio -> {
-                // Abrir la pantalla del listado de viviendas
+                // Abrir la pantalla del inicio de sesión
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 activityActual = 0
+                startActivity(intent)
+                true
+            }
+
+            R.id.listado_viviendas -> {
+                // Abrir la pantalla del listado de viviendas
+                val intent = Intent(this, ListadoActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                activityActual = 1
                 startActivity(intent)
                 true
             }
@@ -44,7 +53,7 @@ open class ActivityConMenus : AppCompatActivity() {
                 // Abrir la pantalla del formulario para añadir viviendas
                 val intent = Intent(this, AnadirViviendaActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                activityActual = 1
+                activityActual = 2
                 startActivity(intent)
                 true
             }
@@ -53,7 +62,7 @@ open class ActivityConMenus : AppCompatActivity() {
                 // Abrir la pantalla para actualizar viviendas
                 val intent = Intent(this, ActualizarViviendaActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                activityActual = 2
+                activityActual = 3
                 startActivity(intent)
                 true
             }
@@ -62,17 +71,18 @@ open class ActivityConMenus : AppCompatActivity() {
                 // Abrir la pantalla para eliminar viviendas
                 val intent = Intent(this, EliminarViviendaActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                activityActual = 3
+                activityActual = 4
                 startActivity(intent)
                 true
             }
 
             R.id.cerrar_sesion -> {
                 // Cerrar sesión y abrir la pantalla de inicio de sesión
+                FirebaseAuth.getInstance().signOut() // Cerrar sesión en Firebase Auth
                 val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
-                activityActual = 4
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+                finish() // Finalizar la actividad actual
                 true
             }
 

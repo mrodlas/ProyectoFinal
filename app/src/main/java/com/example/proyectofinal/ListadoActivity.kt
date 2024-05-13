@@ -14,10 +14,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.io.Console
 
 // Actividad para mostrar un listado de viviendas
-class ListadoActivity : ActivityConMenus() {
+class ListadoActivity : ActivityConMenus(),  ViviendaAdapter.OnItemClickListener{ //para que se abrá otra activity:
     private lateinit var viviendaLista: ArrayList<Vivienda>
     private lateinit var Recycler: RecyclerView
     private lateinit var adapter: ViviendaAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class ListadoActivity : ActivityConMenus() {
         // Agregar un TextChangedListener al EditText de filtro
         binding.filtro.addTextChangedListener { filtro ->
             // Filtrar la lista de viviendas según el texto ingresado en el EditText de filtro
-            val filtroVivienda = ViviendaProvider.viviendaList.filter { vivienda ->
+            val filtroVivienda = viviendaLista.filter { vivienda ->
                 vivienda.nombre.lowercase().contains(filtro.toString().lowercase())
             }
             // Actualizar el adaptador con la lista filtrada
@@ -40,7 +41,7 @@ class ListadoActivity : ActivityConMenus() {
         // Configurar el RecyclerView
         Recycler = binding.Recycler
         Recycler.layoutManager = LinearLayoutManager(this)
-        adapter = ViviendaAdapter(viviendaLista)
+        adapter = ViviendaAdapter(viviendaLista, this)
         Recycler.adapter = adapter
 
         // Cargar los datos desde Firestore
@@ -72,5 +73,9 @@ class ListadoActivity : ActivityConMenus() {
                 // Manejar el caso de error en la obtención de las viviendas
                 Log.e("Cargar", "Error en la obtención de la vivienda", exception)
             }
+    }
+
+    override fun onItemClick(vivienda: Vivienda) {
+        TODO("Not yet implemented")
     }
 }

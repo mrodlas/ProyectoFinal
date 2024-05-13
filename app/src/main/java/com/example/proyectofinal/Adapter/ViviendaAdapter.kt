@@ -2,13 +2,17 @@ package com.example.proyectofinal.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.Vivienda
 import com.example.proyectofinal.R
 
 // Adaptador para la lista de viviendas
-class ViviendaAdapter(private var viviendaList: List<Vivienda>) : RecyclerView.Adapter<ViviendaViewHolder>() {
+class ViviendaAdapter(private var viviendaList: List<Vivienda>, private val listener: OnItemClickListener) : RecyclerView.Adapter<ViviendaViewHolder>() {
 
+    interface OnItemClickListener {
+        fun onItemClick(vivienda: Vivienda)
+    }
     // Método que se llama cuando se necesita crear una nueva vista de elemento de vivienda
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViviendaViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,6 +28,9 @@ class ViviendaAdapter(private var viviendaList: List<Vivienda>) : RecyclerView.A
     override fun onBindViewHolder(holder: ViviendaViewHolder, position: Int) {
         val item = viviendaList[position]
         holder.render(item)
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(item)
+        }
     }
 
     // Método para actualizar la lista de viviendas y notificar al adaptador que los datos han cambiado
@@ -32,3 +39,4 @@ class ViviendaAdapter(private var viviendaList: List<Vivienda>) : RecyclerView.A
         notifyDataSetChanged()
     }
 }
+

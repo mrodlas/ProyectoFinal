@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6BE8B"
-    tools:context=".MainActivity">
+    tools:context=".OlvidarContrasenia">
 
     <ImageView
         android:id="@+id/logo"
@@ -29,23 +29,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <EditText
-        android:id="@+id/etUsuario"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        style="@style/EditTextStyle"
-        android:inputType="text"
-        android:hint="Usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+    <TextView
+        android:id="@+id/lbBienvenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrese su Correo"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="60dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/lbRecuperarContrasenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recuperar su Contraseña"
+        android:textSize="18dp"
+        android:layout_marginLeft="60dp"
+        app:layout_constraintTop_toBottomOf="@+id/lbBienvenido"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <EditText
-        android:id="@+id/etContrasenia"
+        android:id="@+id/etCorreo"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -53,28 +60,14 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         style="@style/EditTextStyle"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
+        android:inputType="text"
+        android:hint="Correo electrónico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/lbRecuperarContrasenia" />
 
     <Button
-        android:id="@+id/btnOlvidarContrasenia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="130dp"
-        style="@style/EditTextStyle"
-        android:background="@drawable/edit_text_background"
-        android:text="Olvidaste tu contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasenia"/>
-
-    <Button
-        android:id="@+id/btnAcceder"
+        android:id="@+id/btnRecuperar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
@@ -82,24 +75,24 @@
         android:layout_marginEnd="130dp"
         style="@style/ButtonStyle"
         android:background="@drawable/button_background"
-        android:text="Acceder"
+        android:text="Recuperar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOlvidarContrasenia" />
+        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
 
     <Button
-        android:id="@+id/btnRegistrarse"
+        android:id="@+id/btnVolverMain"
+        style="@style/ButtonStyle"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="130dp"
-        style="@style/ButtonStyle"
         android:background="@drawable/button_background"
-        android:text="Registrarse"
+        android:text="Volver"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAcceder" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRecuperar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

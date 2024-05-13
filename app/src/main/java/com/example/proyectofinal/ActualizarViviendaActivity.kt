@@ -35,16 +35,47 @@ class ActualizarViviendaActivity : ActivityConMenus() {
                 // Referencia a la vivienda en la base de datos
                 val viviendaRef = db.collection("Viviendas").document(idVivienda)
 
-                // Actualizar el precio de la vivienda en la base de datos
-                viviendaRef.update("precio", precio.toDouble())
+                // Verificar si la vivienda con el ID proporcionado existe
+                viviendaRef.get().addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        // El documento existe, se puede realizar la actualización
+                    } else {
+                        // El documento no existe, mostrar un mensaje de error
+                        Toast.makeText(this, "La vivienda con el ID proporcionado no existe", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener { e ->
+                    // Manejar errores al obtener el documento
+                    Toast.makeText(this, "Error al obtener la vivienda: ", Toast.LENGTH_SHORT).show()
+                }
+
+                //Actualizar el nombre de la vivienda en la base de datos
+                viviendaRef.update("nombre", nombre.toString())
                     .addOnSuccessListener {
-                        // Mostrar un mensaje de éxito si la actualización fue exitosa
-                        Toast.makeText(this, "Se ha actualizado el precio correctamente", Toast.LENGTH_SHORT).show()
+                        //Mostrar un mensaje de éxito si la actualización fue exitosa
+                        Toast.makeText(this, "Se ha actualizado el nombre correctamente", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
                         // Mostrar un mensaje de error si la actualización falló
-                        Toast.makeText(this, "Error al actualizar el precio: $e", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Error al actualizar el nombre: ", Toast.LENGTH_SHORT).show()
                     }
+
+                // Actualizar el precio de la vivienda en la base de datos
+                try {
+                    val precioDouble = precio.toString()
+                    // Actualizar el precio de la vivienda en la base de datos
+                    viviendaRef.update("precio", precioDouble)
+                        .addOnSuccessListener {
+                            // Mostrar un mensaje de éxito si la actualización fue exitosa
+                            Toast.makeText(this, "Se ha actualizado el precio correctamente", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            // Mostrar un mensaje de error si la actualización falló
+                            Toast.makeText(this, "Error al actualizar el precio: ", Toast.LENGTH_SHORT).show()
+                        }
+                } catch (e: NumberFormatException) {
+                    // Manejar la excepción si el valor ingresado no puede convertirse a Double
+                    Toast.makeText(this, "El precio debe ser un número válido", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 // Mostrar un mensaje si algún campo está vacío
                 Toast.makeText(this, "Algún campo está vacío", Toast.LENGTH_SHORT).show()

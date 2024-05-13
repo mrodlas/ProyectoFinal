@@ -6,6 +6,9 @@
         android:id="@+id/inicio"
         android:title="Inicio" />
     <item
+        android:id="@+id/listado_viviendas"
+        android:title="Listado de Viviendas" />
+    <item
         android:id="@+id/anadir_vivienda"
         android:title="Añadir Vivienda" />
     <item
